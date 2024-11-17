@@ -1,32 +1,18 @@
-export default class HolbertonClass {
+class HolbertonClass {
 	constructor(size, location) {
-	  this.size = size;
-	  this.location = location;
+	  this._size = size;
+	  this._location = location;
 	}
   
-	get size() {
+	// Redéfinir la méthode valueOf pour renvoyer la taille en tant que nombre
+	valueOf() {
 	  return this._size;
 	}
   
-	set size(value) {
-	  this._size = value;
-	}
-  
-	get location() {
+	// Redéfinir la méthode toString pour renvoyer l'emplacement en tant que chaîne
+	toString() {
 	  return this._location;
 	}
-  
-	set location(value) {
-	  this._location = value;
-	}
-  
-	[Symbol.toPrimitive](hint) {
-	  if (hint === 'number') {
-		return this.size;
-	  }
-	  if (hint === 'string') {
-		return this.location;
-	  }
-	  return this;
-	}
   }
+  
+  export default HolbertonClass;
