@@ -1,31 +1,20 @@
-/**
- * Updates the grades of a list of students in a given city.
- * @param {{
-*   id: Number,
-*   firstName: String,
-*   location: String
-* }[]} students - The list of students.
-* @param {*} city - The city of students.
-* @param {{
-*   studentId: Number,
-*   grade: Number,
-* }[]} newGrades - The new grades to be given to a student.
-* @returns {{id: Number, firstName: String, location: String}[]}
-*/
 export default function updateStudentGradeByCity(students, city, newGrades) {
- const defaultGrade = { grade: 'N/A' };
-
- if (students instanceof Array) {
-   return students
-	 .filter((student) => student.location === city)
-	 .map((student) => ({
-	   id: student.id,
-	   firstName: student.firstName,
-	   location: student.location,
-	   grade: (newGrades
-		 .filter((grade) => grade.studentId === student.id)
-		 .pop() || defaultGrade).grade,
-	 }));
- }
- return [];
-}
+	// Vérifie si students est un tableau
+	if (!Array.isArray(students)) {
+	  return [];
+	}
+  
+	// Filtre les étudiants par localisation
+	return students
+	  .filter((student) => student.location === city) // Étudiants dans la ville donnée
+	  .map((student) => {
+		// Trouve la nouvelle note pour l'étudiant (ou undefined si non trouvée)
+		const gradeObj = newGrades.find((grade) => grade.studentId === student.id);
+  
+		// Retourne un nouvel objet étudiant avec la note mise à jour
+		return {
+		  ...student,
+		  grade: gradeObj ? gradeObj.grade : 'N/A', // Ajout de la note ou "N/A"
+		};
+	  });
+  }

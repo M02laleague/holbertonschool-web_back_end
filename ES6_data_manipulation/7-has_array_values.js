@@ -1,9 +1,4 @@
-/**
- * Checks if a set contains each element in an array.
- * @param {Set} set - The collection of unique items.
- * @param {*} array - The array of items.
- * @returns {Boolean}
- */
 export default function hasValuesFromArray(set, array) {
+	// Vérifie si tous les éléments du tableau sont dans le Set
 	return array.every((value) => set.has(value));
   }

@@ -1,3 +1,4 @@
 /node_modules
 nodesource_setup.sh
 *-main.js
+/ES6_data_manipulation/node_modules
