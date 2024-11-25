@@ -2,3 +2,4 @@
 nodesource_setup.sh
 *-main.js
 /ES6_data_manipulation/node_modules
+node_modules
