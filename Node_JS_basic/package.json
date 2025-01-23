@@ -1,0 +1,32 @@
+{
+	"name": "nodejs_basics",
+	"version": "1.0.0",
+	"description": "NodeJS Basics Project",
+	"main": "server.js",
+	"scripts": {
+		"start": "node full_server/server.js",
+		"dev": "nodemon --exec babel-node full_server/server.js ./database.csv",
+		"test": "mocha",
+		"lint": "eslint .",
+		"full-test": "npm run lint && npm run test"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.26.0",
+		"@babel/node": "^7.26.0",
+		"@babel/preset-env": "^7.26.0",
+		"eslint": "^8.57.1",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-plugin-import": "^2.31.0",
+		"express": "^4.21.2",
+		"mocha": "^10.8.2",
+		"nodemon": "^2.0.22"
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-env"
+		]
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC"
+}
