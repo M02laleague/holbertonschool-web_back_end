@@ -1,20 +1,11 @@
-import AppController from '../controllers/AppController.js';
-import StudentsController from '../controllers/StudentsController.js';
+const express = require('express');
+const AppController = require('../controllers/AppController');
+const StudentsController = require('../controllers/StudentsController');
 
-/**
- * Configures the routes for the application.
- * @param {Object} app - The Express application.
- */
-const configureRoutes = (app) => {
-  // Route for the homepage
-  app.get('/', AppController.getHomepage);
+const router = express.Router();
 
-  // Route to gett all students
-  app.get('/students', StudentsController.getAllStudents);
+router.get('/', AppController.getHomepage);
+router.get('/students', StudentsController.getAllStudents);
+router.get('/students/:major', StudentsController.getAllStudentsByMajor);
 
-  // Route to gett students by major
-  app.get('/students/:major', StudentsController.getAllStudentsByMajor);
-};
-
-// Export the configureRoutes function
-export default configureRoutes;
+module.exports = router;

@@ -1,30 +1,16 @@
-import { promises as fs } from 'fs'; // Utilise "import" pour importer fs.promises
+const fs = require('fs').promises;
 
-/**
- * Reads a CSV file asynchronously and returns an object of student arrays grouped by field.
- * @param {string} path - The path to the CSV file.
- * @returns {Promise} - A promise that resolves with an object of student arrays grouped by field, or rejects with an error.
- */
 const readDatabase = async (path) => {
   try {
     const data = await fs.readFile(path, 'utf8');
-    const lines = data.split('\n').filter((line) => line.trim() !== '');
-
-    if (lines.length <= 1) {
-      throw new Error('Cannot load the database');
-    }
-
-    const [header, ...students] = lines;
+    const lines = data.trim().split('\n');
+    const students = lines.slice(1).filter((line) => line.length > 0);
     const fields = {};
 
     students.forEach((student) => {
-      const [firstname, , , field] = student.split(',');
-
-      if (!fields[field]) {
-        fields[field] = [];
-      }
-
-      fields[field].push(firstname);
+      const [firstName, , , field] = student.split(',');
+      if (!fields[field]) fields[field] = [];
+      fields[field].push(firstName);
     });
 
     return fields;
@@ -33,5 +19,4 @@ const readDatabase = async (path) => {
   }
 };
 
-// Export the function
-export default readDatabase;
+module.exports = readDatabase;
